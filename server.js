@@ -20,20 +20,18 @@ hbs.registerHelper('message', (text) => {
 	return text.toUpperCase();
 })
 
-/*app.use('/', (req, res, next) => {
-	try {
-		res.render('index.hbs',  {
-			title: 'Index page',
-			year: new Date().getFullYear(),
-			date: new Date().getDate(),
-			welcome: 'welcome to index page!'
-		})
-	}
-	catch(error) {
-		res.render('maintenance.hbs')
-	}
+/*app.use("/", (request, response, next) => {
+	let time = new Date().toString();
+	let log = `${time}: ${request.method} ${request.url}`;
+	fs.appendFile("server.log", log + "\n", (error) => {
+	  if (error) {
+		console.log("Unable to log message");
+	  }
+	});
 	next();
-})*/
+  }, (request, response, next) => {
+	response.render("maintenance.hbs");
+  });*/
 
 app.use((resquest, response, next) => {
 	var time = new Date().toString();
