@@ -21,8 +21,12 @@ hbs.registerHelper('message', (text) => {
 	return text.toUpperCase();
 })
 
-/*app.use("/", (request, response, next) => {
-	let time = new Date().toString();
+hbs.registerHelper('getCurrentTime', () => {
+	return new Date().toString();
+})
+
+//app.use("/", (request, response, next) => {
+	/*let time = new Date().toString();
 	let log = `${time}: ${request.method} ${request.url}`;
 	fs.appendFile("server.log", log + "\n", (error) => {
 	  if (error) {
@@ -30,9 +34,9 @@ hbs.registerHelper('message', (text) => {
 	  }
 	});
 	next();
-  }, (request, response, next) => {
-	response.render("maintenance.hbs");
-  });*/
+  }, (request, response, next) => {*/
+//	response.render("maintenance.hbs");
+//  });
 
 app.use((resquest, response, next) => {
 	var time = new Date().toString();
