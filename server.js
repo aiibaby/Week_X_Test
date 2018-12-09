@@ -6,6 +6,7 @@ const port = process.env.PORT || 8080;
 
 var app = express();
 var url = '';
+var num = Math.floor((Math.random() * 10) + 1);
 
 hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs')
@@ -92,12 +93,15 @@ app.get('/maintenance', (req, res) => {
 app.listen(port, () => {
 	console.log(`Server is up on the port ${port}`);
 	request({
-        url: 'https://jsonplaceholder.typicode.com/photos/1',
+        url: `https://jsonplaceholder.typicode.com/photos/${num}`,
         json: true
-    }, (error, response, body) => {
-        
-            url=body.url
-            
+    }, (error, response) => {
+		if (error) {
+            callback('Cannot connect to Weather API')
+        } else {
+			console.log(response.body)
+			url=response.body.url
+		}    
     
     });
 });
